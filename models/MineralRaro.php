@@ -6,4 +6,7 @@ class MineralRaro extends EntidadEstelar{
             $this->dureza = $dureza;
         }
     }
+     public function reaccionar(){
+        return "Brilla con intensidad azulada";
+    }
 }

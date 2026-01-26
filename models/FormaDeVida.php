@@ -7,5 +7,8 @@ class FormaDeVida extends EntidadEstelar{
             $this->dieta = $dieta;
         }
     }
-    
+
+    public function reaccionar(){
+        return "Emite pulso electromagnetico";
+    }
 }

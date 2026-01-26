@@ -17,4 +17,7 @@ abstract class EntidadEstelar{
             echo ("Error: Nivel de peligrosidad superior a 10.");
         }
     }
+
+    public function reaccionar(){
+    }
 }

@@ -6,4 +6,8 @@ class Artefacto extends EntidadEstelar{
             $this->antiguedad = $antiguedad;
         }
     }
+     public function reaccionar(){
+        return "Reproduce un mensaje en una lengua muerta";
+    }
+
 }
