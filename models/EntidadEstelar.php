@@ -18,6 +18,5 @@ abstract class EntidadEstelar{
         }
     }
 
-    public function reaccionar(){
-    }
+
 }

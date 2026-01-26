@@ -1,5 +1,5 @@
 <?php
-class FormaDeVida extends EntidadEstelar{
+class FormaDeVida extends EntidadEstelar implements iInteractuable{
     protected $dieta;
 
     public function __construct($id, $nombre, $planetaOrigen, $nivelEstabilidad, $dieta){

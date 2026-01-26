@@ -1,5 +1,5 @@
 <?php
-class Artefacto extends EntidadEstelar{
+class Artefacto extends EntidadEstelar implements iInteractuable{
     protected $antiguedad;
     public function __construct($id, $nombre, $planetaOrigen, $nivelEstabilidad, $antiguedad){
         parent::__construct($id, $nombre, $planetaOrigen, $nivelEstabilidad){
