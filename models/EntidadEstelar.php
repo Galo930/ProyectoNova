@@ -18,5 +18,29 @@ abstract class EntidadEstelar{
         }
     }
 
+    public function getId() { 
+        return $this->id;
+    }
+    public function getNombre() { 
+        return $this->nombre;
+    }
+    public function getPlanetaOrigen() { 
+        return $this->planetaOrigen;
+    }   
+    public function getNivelEstabilidad() { 
+        return $this->nivelEstabilidad;
+    }
 
+    public function setid($id) { 
+        $this->id = $id;
+    }
+    public function setNombre($nombre) { 
+        $this->nombre = $nombre;
+    }
+    public function setPlanetaOrigen($planetaOrigen) { 
+        $this->planetaOrigen = $planetaOrigen;
+    }
+    public function setNivelEstabilidad($nivelEstabilidad) { 
+        $this->nivelEstabilidad = $nivelEstabilidad;
+    }
 }
