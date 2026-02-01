@@ -26,6 +26,13 @@ class Gestor{
                 $elemento->setNombre($nombre);
                 $elemento->setplanetaOrigen($planetaOrigen);
                 $elemento->setnivelEstabilidad($nivelEstabilidad);
+                if ($elemento instanceof Artefacto){
+                    $elemento->setAntiguedad($antiguedad);
+                } elseif ($elemento instanceof MineralRaro){
+                    $elemento->setDureza($dureza);
+                } elseif ($elemento instanceof FormaDeVida){
+                    $elemento->setDieta($dieta);
+                }
 
             }
         }

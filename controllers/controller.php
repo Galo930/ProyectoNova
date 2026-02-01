@@ -40,13 +40,13 @@ class Controller {
                     );
                      break;
             }
+            if ($nuevo){
             $this->gestor->guardar($nuevo);
+            }
         }
-        header("Location:index.php");
         include "views/crear.php";
-        exit;
-        
     }
+
     public function editar(){
          $id = $_GET['id'] ?? null;
         $elemento = $this->gestor->Buscar($id);

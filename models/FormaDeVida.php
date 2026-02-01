@@ -6,7 +6,13 @@ class FormaDeVida extends EntidadEstelar implements iInteractuable{
         parent::__construct($id, $nombre, $planetaOrigen, $nivelEstabilidad);
             $this->dieta = $dieta;
         }
-    
+
+    public function getDieta(){
+        return $this->dieta;
+    }
+    public function setDieta($dieta){
+        $this->dieta = $dieta;
+    }
 
     public function reaccionar(){
         return "Emite pulso electromagnetico";

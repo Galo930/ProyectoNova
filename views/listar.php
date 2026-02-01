@@ -21,6 +21,7 @@
         <th>Nombre</th>
         <th>Planeta de Origen</th>
         <th>Nivel de Estabilidad</th>
+        <th>Atributo Especial
         <th>Acciones</th>
     <?php foreach($_SESSION['Elemento'] as $elemento):?>
         <tr>
@@ -28,6 +29,16 @@
             <td><?php echo $elemento->getNombre() ?></td>
             <td><?php echo $elemento->getplanetaOrigen() ?></td>
             <td><?php echo $elemento->getnivelEstabilidad() ?></td>
+            <td>
+                <?php 
+                if ($elemento instanceof Artefacto){
+                    echo "Antiguedad: " . $elemento->getAntiguedad();
+                } elseif ($elemento instanceof MineralRaro){
+                    echo "Dureza: " . $elemento->getDureza();
+                } elseif ($elemento instanceof FormaDeVida){
+                    echo "Dieta: " . $elemento->getDieta();
+                }
+                ?>
             <td>
                 <a href="index.php?accion=editar&id<? echo getId()?>">Editar</a>
                 <a href="index.php?accion=eliminar<? echo getId()?>">Eliminar</a>

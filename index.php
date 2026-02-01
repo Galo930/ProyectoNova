@@ -3,7 +3,7 @@ require_once 'autoloader.php';
 session_start();
 $gestor = new Gestor();
 $controller = new Controller($gestor);
-$accion = $_GET['accion'] ?? 'index';
+$accion = $_GET['action'] ?? 'index';
 switch ($accion) {
     case 'crear':
         $controller->crear();

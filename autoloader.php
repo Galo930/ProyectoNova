@@ -1,6 +1,5 @@
 <?php
 spl_autoload_register(function ($class) {
-    // Definimos las carpetas donde buscar
     $paths = ['models/', 'controllers/', 'helpers/', 'views/'];
 
     foreach ($paths as $path) {
