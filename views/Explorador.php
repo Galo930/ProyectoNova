@@ -14,8 +14,8 @@
             <th>NOMBRE</th>
             <th>ORIGEN</th>
             <th>ESTABILIDAD</th>
+            <th>ATRIBUTO ESPECIAL</th>
             <th>REACCIÓN</th>
-            <th>ACCIÓN</th>
         </tr>
     </thead>
     <tbody>
@@ -25,7 +25,18 @@
                 <td><?= $entidad->getNombre() ?></td>
                 <td><?= $entidad->getPlanetaOrigen() ?></td>
                 <td><?= $entidad->getNivelEstabilidad() ?>/10</td>
-                <td><?= $entidad->reaccionar() ?></td> <td>
+                <td>
+                    <?php
+                    if ($entidad instanceof Artefacto) {
+                        echo "Antigüedad: " . $entidad->getAntiguedad();
+                    } elseif ($entidad instanceof MineralRaro) {
+                        echo "Dureza: " . $entidad->getDureza();
+                    } elseif ($entidad instanceof FormaDeVida) {
+                        echo "Dieta: " . $entidad->getDieta();
+                    }
+                    ?>
+                <td><?= $entidad->reaccionar() ?></td> 
+                <td>
                     <a href="index.php?action=eliminar&id=<?= $entidad->getId() ?>" class="btn-expulsar">EXPULSAR</a>
                 </td>
             </tr>
