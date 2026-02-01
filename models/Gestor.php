@@ -1,24 +1,41 @@
 <?php
-class Gestor implements iGestor{
+class Gestor{
+    public function __construct(){
+        if (!isset($_SESSION ['Elemento'])){
+            $_SESSION['Elemento'] = [];
+        }
+    }
     public function obtenerTodos(){
-        return $_SESSION['Entidades'];
+        return $_SESSION['Elemento'];
     }
-    
     public function guardar($entidad){
-        $_SESSION['Entidades'][] = $entidad;
-        return true;
+        $_SESSION['Elemento'][] = $entidad;
     }
-
-    public function eliminar($id){
-        foreach ($_SESSION['Entidades'] as $i => $e) {
-   
-            if ($e->getId() == $id) {
-                unset($_SESSION['Entidades'][$i]);
-                
-                $_SESSION['Entidades'] = array_values($_SESSION['Entidades']);
-                return true;
+    public function buscar($id){
+        foreach ($_SESSION['Elemento'] as $elemento){
+            if ($elemento->getid()==$id){
+                return $elemento;
             }
         }
-        return false; 
+        return null;
+    }
+    public function editar($id, $nombre, $planetaOrigen, $nivelEstabilidad, $antiguedad="", $dureza="", $dieta="" ){
+        foreach ($_SESSION['Elemento'] as $elemento){
+            if ($elemento->getId()==$id){
+                $elemento->setId($id);
+                $elemento->setNombre($nombre);
+                $elemento->setplanetaOrigen($planetaOrigen);
+                $elemento->setnivelEstabilidad($nivelEstabilidad);
+
+            }
+        }
+    }
+    public function eliminar($id){
+        foreach ($_SESSION['Elemento'] as $i => $elemento){
+            if($elemento->getId()==$id){
+                unset($_SESSION['Elemento'][$i]);
+                $_SESSION['Elemento']=array_values($_SESSION['Elemento']);
+            }
+        }
     }
 }

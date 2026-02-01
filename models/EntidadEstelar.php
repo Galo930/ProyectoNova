@@ -10,13 +10,9 @@ abstract class EntidadEstelar{
         $this->nombre = $nombre;
         $this->planetaOrigen= $planetaOrigen;
         $this->nivelEstabilidad = $nivelEstabilidad;
-        $this->validarEstabilidad($nivelEstabilidad);
     }
-     public function validarEstabilidad($nivelEstabilidad) {
-        if ($nivelEstabilidad > 10 || $nivelEstabilidad < 0) {
-            echo ("Error: Nivel de peligrosidad superior a 10.");
-        }
-    }
+
+    abstract public function reaccionar();
 
     public function getId() { 
         return $this->id;
@@ -24,23 +20,23 @@ abstract class EntidadEstelar{
     public function getNombre() { 
         return $this->nombre;
     }
-    public function getPlanetaOrigen() { 
+    public function getplanetaOrigen() { 
         return $this->planetaOrigen;
     }   
-    public function getNivelEstabilidad() { 
+    public function getnivelEstabilidad() { 
         return $this->nivelEstabilidad;
     }
 
-    public function setid($id) { 
+    public function setId($id) { 
         $this->id = $id;
     }
     public function setNombre($nombre) { 
         $this->nombre = $nombre;
     }
-    public function setPlanetaOrigen($planetaOrigen) { 
+    public function setplanetaOrigen($planetaOrigen) { 
         $this->planetaOrigen = $planetaOrigen;
     }
-    public function setNivelEstabilidad($nivelEstabilidad) { 
+    public function setnivelEstabilidad($nivelEstabilidad) { 
         $this->nivelEstabilidad = $nivelEstabilidad;
     }
 }

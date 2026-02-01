@@ -1,46 +1,76 @@
 <?php
 class Controller {
     private $gestor;
-
-    public function __construct(iGestor $gestor) {
-        $this->gestor = $gestor; // Inyección de dependencias [cite: 9]
+    public function __construct($gestor){
+        $this->gestor=$gestor;
     }
-
-    public function explorar() {
-        $todos = $this->gestor->obtenerTodos();
-        
-        // Configuración de Paginación [cite: 29]
-        $porPagina = 5; 
-        $totalHallazgos = count($todos);
-        $totalPaginas = ceil($totalHallazgos / $porPagina);
-        $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-        $inicio = ($paginaActual - 1) * $porPagina;
-
-        // Variables que la vista necesita para no dar error
-        $hallazgosPaginados = array_slice($todos, $inicio, $porPagina);
-        
-        include 'views/Explorador.php';
+    public function index(){
+        $elementos=$this->gestor->obtenerTodos();
+        include "views/listar.php";
     }
-
-    public function guardar($entidad) {
-        if ($_POST) {
-            $tipo = $_POST['tipo'];
-            $id = $_POST['id'] ?? uniqid();
-            $nombre = $_POST['nombre'];
-            $planeta = $_POST['planetaOrigen'];
-            $estabilidad = $_POST['nivelEstabilidad'];
-
-            // Lógica dinámica para instanciar la clase correcta [cite: 33, 34]
-            if ($tipo === 'FormaDeVida') {
-                $entidad = new FormaDeVida($id, $nombre, $planeta, $estabilidad, $_POST['dieta']);
-            } elseif ($tipo === 'MineralRaro') {
-                $entidad = new MineralRaro($id, $nombre, $planeta, $estabilidad, $_POST['dureza']);
-            } else {
-                $entidad = new Artefacto($id, $nombre, $planeta, $estabilidad, $_POST['antiguedad']);
+    public function crear(){
+        if ($_SERVER['REQUEST_METHOD']==='POST'){
+            $id=uniqid();
+            switch($_POST['tipo']){
+                case 'Artefacto':
+                    $nuevo= new Artefacto(
+                        $id,
+                        $_POST['nombre'],
+                        $_POST['planetaOrigen'],
+                        $_POST['nivelEstabilidad'],
+                        $_POST['antiguedad']
+                    );
+                     break;
+                    case 'FormaDeVida':
+                    $nuevo= new FormaDeVida(
+                        $id,
+                        $_POST['nombre'],
+                        $_POST['planetaOrigen'],
+                        $_POST['nivelEstabilidad'],
+                        $_POST['dieta']
+                    );
+                     break;
+                    case 'MineralRaro':
+                    $nuevo= new MineralRaro(
+                        $id,
+                        $_POST['nombre'],
+                        $_POST['planetaOrigen'],
+                        $_POST['nivelEstabilidad'],
+                        $_POST['dureza']
+                    );
+                     break;
             }
-
-            $this->gestor->guardar($entidad);
-            header("Location: index.php?action=explorar");
+            $this->gestor->guardar($nuevo);
         }
+        header("Location:index.php");
+        include "views/crear.php";
+        exit;
+        
+    }
+    public function editar(){
+         $id = $_GET['id'] ?? null;
+        $elemento = $this->gestor->Buscar($id);
+
+        if (!$elemento) {
+            echo "Elemento no encontrado";
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $this->gestor->Editar(
+                $_POST['id'],
+                $_POST['nombre'],
+                $_POST['planetaOrigen'],
+                $_POST['nivelEstabilidad'],
+                $_POST['atributoEspecial']
+            );
+
+            header("Location: index.php");
+            exit;
+        }
+
+        include "views/editar.php";
     }
 }
+
