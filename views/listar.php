@@ -14,7 +14,7 @@
 </head>
 <body>
     <h2> Elementos</h2>
-    <a href="index.php?accion=crear">Crear nuevo elemento</a>
+    <a href="index.php?action=crear">Crear nuevo elemento</a>
 
     <table>
         <th>ID</th>
@@ -40,9 +40,9 @@
                 }
                 ?>
             <td>
-                <a href="index.php?accion=editar&id<? echo getId()?>">Editar</a>
-                <a href="index.php?accion=eliminar<? echo getId()?>">Eliminar</a>
-                <a href="index.php?accion=reaccionar">Reaccionar</a>
+                <a href="index.php?accion=editar&id<? echo $elemento->getId()?>">Editar</a>
+                <a href="index.php?accion=eliminar&id<? echo $elemento->getId()?>">Eliminar</a>
+                <a href="index.php?accion=reaccionar&id">Reaccionar</a>
         </tr>
     <?php endforeach;?>
     </table>

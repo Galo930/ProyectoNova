@@ -43,8 +43,11 @@ class Controller {
             if ($nuevo){
             $this->gestor->guardar($nuevo);
             }
+                    header("Location: index.php");
+        exit;
         }
         include "views/crear.php";
+
     }
 
     public function editar(){
@@ -65,12 +68,18 @@ class Controller {
                 $_POST['nivelEstabilidad'],
                 $_POST['atributoEspecial']
             );
-
             header("Location: index.php");
             exit;
-        }
+        }else {
+            if ($elemento){
+                include "views/editar.php";
+            } else {
+                echo "Elemento no encontrado";
+                exit;
+            }
 
         include "views/editar.php";
+        }
     }
 }
 
