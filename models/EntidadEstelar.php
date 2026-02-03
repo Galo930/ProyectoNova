@@ -12,8 +12,6 @@ abstract class EntidadEstelar{
         $this->nivelEstabilidad = $nivelEstabilidad;
     }
 
-    abstract public function reaccionar();
-
     public function getId() { 
         return $this->id;
     }

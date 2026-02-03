@@ -16,3 +16,4 @@ class Artefacto extends EntidadEstelar implements iInteractuable{
     }
 
 }
+

@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +11,13 @@
     border-collapse: collapse;
   }
   th, td {
-    padding: 10px; 
+    padding: 10px;
+    margin: 20px; 
   }</style>
 </head>
 <body>
     <h2> Elementos</h2>
-    <a href="index.php?action=crear">Crear nuevo elemento</a>
+    <a href="index.php?accion=crear">Crear nuevo elemento</a>
 
     <table>
         <th>ID</th>
@@ -40,12 +43,23 @@
                 }
                 ?>
             <td>
-                <a href="index.php?accion=editar&id<? echo $elemento->getId()?>">Editar</a>
-                <a href="index.php?accion=eliminar&id<? echo $elemento->getId()?>">Eliminar</a>
-                <a href="index.php?accion=reaccionar&id">Reaccionar</a>
+                <a href="index.php?accion=editar&id=<? echo $elemento->getId()?>">Editar</a>
+                <a href="index.php?accion=eliminar&id=<? echo $elemento->getId()?>">Eliminar</a>
+                <a href="index.php?accion=reaccionar&id=<? echo $elemento->getId()?>">Reaccionar</a>
         </tr>
     <?php endforeach;?>
     </table>
+    <div class="paginacion">
+    <?php if ($paginaActual > 1): ?>
+        <a href="index.php?accion=index&page=<?php echo $paginaActual - 1; ?>">« Anterior</a>
+    <?php endif; ?>
+
+    <span>Página <?php echo $paginaActual; ?> de <?php echo $totalPaginas; ?></span>
+
+    <?php if ($paginaActual < $totalPaginas): ?>
+        <a href="index.php?accion=index&page=<?php echo $paginaActual + 1; ?>">Siguiente »</a>
+    <?php endif; ?>
+</div>
 </body>
 </html>
 

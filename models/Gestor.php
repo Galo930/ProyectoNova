@@ -1,5 +1,5 @@
 <?php
-class Gestor{
+class Gestor implements iGestor{
     public function __construct(){
         if (!isset($_SESSION ['Elemento'])){
             $_SESSION['Elemento'] = [];
@@ -7,6 +7,17 @@ class Gestor{
     }
     public function obtenerTodos(){
         return $_SESSION['Elemento'];
+    }
+    public function obtenerPorPagina($paginaActual, $limite = 5) {
+        $todos = $_SESSION['Elemento'];
+        $total = count($todos);
+        $offset = ($paginaActual - 1) * $limite;
+        $elementosPaginados = array_slice($todos, $offset, $limite);
+        return [
+            'items' => $elementosPaginados,
+            'totalPaginas' => ceil($total / $limite),
+            'paginaActual' => $paginaActual
+        ];
     }
     public function guardar($entidad){
         $_SESSION['Elemento'][] = $entidad;

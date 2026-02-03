@@ -6,7 +6,7 @@
 <body>
     <h1>Registrar Nueva Entidad</h1>
 
-    <form method="POST" action="index.php?action=crear">
+    <form method="POST" action="index.php?accion=crear">
         
         Nombre:<br>
         <input type="text" name="nombre" required><br><br>

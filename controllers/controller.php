@@ -4,10 +4,18 @@ class Controller {
     public function __construct($gestor){
         $this->gestor=$gestor;
     }
-    public function index(){
-        $elementos=$this->gestor->obtenerTodos();
-        include "views/listar.php";
+    public function index() {
+    $pagina = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    if ($pagina < 1){
+        $pagina = 1;
     }
+    $datosPaginados = $this->gestor->obtenerPorPagina($pagina, 5);
+    $elementos = $datosPaginados['items'];
+    $totalPaginas = $datosPaginados['totalPaginas'];
+    $paginaActual = $datosPaginados['paginaActual'];
+
+    include "views/listar.php";
+}
     public function crear(){
         if ($_SERVER['REQUEST_METHOD']==='POST'){
             $id=uniqid();
@@ -62,24 +70,41 @@ class Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $this->gestor->Editar(
-                $_POST['id'],
+                $id,
                 $_POST['nombre'],
                 $_POST['planetaOrigen'],
                 $_POST['nivelEstabilidad'],
-                $_POST['atributoEspecial']
+                $_POST['antiguedad'] ?? "",
+                $_POST['dureza'] ?? "",
+                $_POST['dieta'] ?? ""
             );
+
             header("Location: index.php");
             exit;
-        }else {
-            if ($elemento){
+        }
+    
                 include "views/editar.php";
+    }
+
+    public function reaccionar() {
+        $id = $_GET['id'] ?? null;
+        $elemento = $this->gestor->buscar($id);
+            if ($elemento && $elemento instanceof iInteractuable) {
+                    $mensaje = $elemento->reaccionar();
+                    echo "<h1>Interacción:</h1>";
+                    echo "<p>" . $mensaje . "</p>";
+                    echo "<a href='index.php'>Volver al listado</a>";
             } else {
-                echo "Elemento no encontrado";
-                exit;
+                    echo "Este objeto no es interactuable o no existe.";
             }
 
-        include "views/editar.php";
-        }
+    }
+
+    public function eliminar(){
+        $id = $_GET['id'] ?? null;
+        $this->gestor->eliminar($id);
+        header("Location: index.php");
+        exit;
     }
 }
 
