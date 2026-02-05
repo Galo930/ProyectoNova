@@ -8,17 +8,27 @@ class Gestor implements iGestor{
     public function obtenerTodos(){
         return $_SESSION['Elemento'];
     }
-    public function obtenerPorPagina($paginaActual, $limite = 5) {
-        $todos = $_SESSION['Elemento'];
-        $total = count($todos);
-        $offset = ($paginaActual - 1) * $limite;
-        $elementosPaginados = array_slice($todos, $offset, $limite);
-        return [
-            'items' => $elementosPaginados,
-            'totalPaginas' => ceil($total / $limite),
-            'paginaActual' => $paginaActual
-        ];
+public function obtenerPorPagina($paginaActual, $limite = 5) {
+    $todos = $_SESSION['Elemento'] ?? []; // Evita error si la sesión no existe
+    $total = count($todos); // Cuenta el total de elementos
+    
+    // Calculamos el total de páginas correctamente
+    $totalPaginas = ($total > 0) ? (int)ceil($total / $limite) : 1;
+
+    // Aseguramos que la página actual no sea mayor al total (por seguridad)
+    if ($paginaActual > $totalPaginas) {
+        $paginaActual = $totalPaginas;
     }
+
+    $offset = ($paginaActual - 1) * $limite; // Punto de inicio para el corte
+    $elementosPaginados = array_slice($todos, $offset, $limite); // Extrae solo 5 elementos
+
+    return [
+        'items' => $elementosPaginados,
+        'totalPaginas' => $totalPaginas, // Clave corregida
+        'paginaActual' => $paginaActual
+    ];
+}
     public function guardar($entidad){
         $_SESSION['Elemento'][] = $entidad;
     }

@@ -1,0 +1,137 @@
+
+/* Configuración General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0b0e14;
+    color: #e0e6ed;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2 {
+    color: #4fc3f7;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #1a2634;
+    padding-bottom: 10px;
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+/* Enlaces y Botones */
+a {
+    color: #4fc3f7;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #81d4fa;
+    text-shadow: 0 0 5px #4fc3f7;
+}
+
+button, .btn-link {
+    background-color: #0288d1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #03a9f4;
+    box-shadow: 0 0 10px #03a9f4;
+}
+
+/* Formularios (crear.php y editar.php) */
+form {
+    background-color: #1a2634;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 500px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #0b0e14;
+    border: 1px solid #37474f;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box; /* Evita que el input se salga del contenedor */
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4fc3f7;
+}
+
+.grupo-especifico {
+    background-color: #263238;
+    padding: 15px;
+    border-left: 4px solid #4fc3f7;
+    margin-top: 20px;
+}
+
+/* Tabla (listar.php) */
+table {
+    width: 100%;
+    max-width: 900px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #1a2634;
+    border-radius: 8px;
+    overflow: hidden; /* Para que las esquinas redondeadas funcionen */
+}
+
+th {
+    background-color: #0288d1;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #263238;
+}
+
+tr:hover {
+    background-color: #263238;
+}
+
+/* Paginador */
+.paginador {
+    margin-top: 30px;
+    text-align: center;
+    background: #1a2634;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.paginador nav a {
+    padding: 5px 10px;
+    border: 1px solid #37474f;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.paginador nav a[style*="font-weight: bold"] {
+    background-color: #4fc3f7;
+    color: #0b0e14 !important;
+    border-color: #4fc3f7;
+}

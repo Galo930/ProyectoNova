@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Registrar Entidad Estelar</title>
+    <link rel="stylesheet" href="helpers/estilos.css">
 </head>
 <body>
     <h1>Registrar Nueva Entidad</h1>
